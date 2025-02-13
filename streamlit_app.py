@@ -6,7 +6,7 @@ import os
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='PDB Structure Dashboard',
-    page_icon=':electron:',  # This is an emoji shortcode. Could be a URL too.
+    page_icon=':eletron:',  # This is an emoji shortcode. Could be a URL too.
 )
 
 # ----------------------------------------------------------------------------- 

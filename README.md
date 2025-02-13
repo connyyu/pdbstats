@@ -1,8 +1,8 @@
-# :earth_americas: GDP dashboard template
+# :electron: GDP dashboard template
 
-A simple Streamlit app showing the GDP of different countries in the world.
+A simple Streamlit app showing the number of macromolecular structures solved by different experimental techniques over time.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gdp-dashboard-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pdbstats.streamlit.app/)
 
 ### How to run it on your own machine
 

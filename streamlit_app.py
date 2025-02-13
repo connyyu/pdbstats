@@ -6,7 +6,7 @@ import os
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='PDB Structure Dashboard',
-    page_icon=':eletron:',  # This is an emoji shortcode. Could be a URL too.
+    page_icon=':microscope:',  # This is an emoji shortcode. Could be a URL too.
 )
 
 # ----------------------------------------------------------------------------- 
@@ -74,7 +74,7 @@ pdb_df, min_value, max_value = get_pdb_data_from_csv_or_api()
 
 # Set the title that appears at the top of the page.
 '''
-# :electron: PDB Structure Dashboard
+# :microscope: PDB Structure Dashboard
 
 Browse structure data from the [Protein Data Bank (PDB)](https://www.rcsb.org/) and [PDBe](https://www.ebi.ac.uk/pdbe/). This dataset contains
 information on the number of structures solved by different experimental techniques over time.

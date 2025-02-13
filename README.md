@@ -1,4 +1,4 @@
-# :electron: PDB structure dashboard
+# :microscope: PDB structure dashboard
 
 A simple Streamlit app.
 

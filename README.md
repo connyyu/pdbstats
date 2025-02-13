@@ -1,6 +1,6 @@
-# :electron: GDP dashboard template
+# :electron: PDB structure dashboard
 
-A simple Streamlit app showing the number of macromolecular structures solved by different experimental techniques over time.
+A simple Streamlit app.
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pdbstats.streamlit.app/)
 

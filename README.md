@@ -1,6 +1,7 @@
 # :microscope: PDB structure dashboard
 
-A simple Streamlit app.
+First Streamlit project.
+Number of macromolecular structures determined by various experimental techniques, based on information from the RCSB PDB database.
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://pdbstats.streamlit.app/)
 

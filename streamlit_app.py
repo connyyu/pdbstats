@@ -13,6 +13,16 @@ EXPERIMENTAL_METHODS = [
     "EM", "X-ray", "NMR", "Neutron", "Multiple methods", "Other"
 ]
 
+# Mapping for short names to full names
+display_mapping = {
+    "EM": "Electron Microscopy",
+    "X-ray": "X-ray Crystallography",
+    "NMR": "Nuclear Magnetic Resonance",
+    "Neutron": "Neutron Diffraction",
+    "Multiple methods": "Multiple Methods",
+    "Other": "Other Techniques"
+}
+
 def fetch_data_for_method(method):
     """Fetch structure count by year for a given experimental method."""
     query = {
@@ -79,7 +89,12 @@ def process_data():
             for method_bucket in year_bucket.get("facets", [])[0].get("buckets", []):
                 technique = method_bucket["label"]
                 count = method_bucket["population"]
-                records.append({"Year": year, "Technique": technique, "Count": count})
+                records.append({
+                    "Year": year,
+                    "Technique": technique,  # Short name
+                    "Technique Full": display_mapping.get(technique, technique),  # Full name
+                    "Count": count
+                })
 
     return pd.DataFrame(records)
 
@@ -97,7 +112,7 @@ pdb_df, min_value, max_value = get_pdb_data()
 # :microscope: PDB Statistics Dashboard
 
 Number of macromolecular structures determined by various experimental techniques,
-based on information from the [RCSB PDB](https://www.rcsb.org/) database.
+based on information from the [RCSB PDB](https://www.rcsb.org/statistics/growth/experimental-method) database.
 
 '''
 
@@ -110,13 +125,15 @@ else:
         max_value=max_value,
         value=[2000, max_value-1])
 
-    techniques = pdb_df['Technique'].unique()
-    display_tech = ["X-ray", "EM", "NMR"]
+    # Unique short technique names
+    techniques = sorted(pdb_df['Technique'].unique())
 
+    # Multiselect shows only short names
     selected_techniques = st.multiselect(
         'Select the experimental technique(s):',
         techniques,
-        default=display_tech)
+        default=["X-ray", "EM", "NMR"]
+    )
 
     # Filter the data
     filtered_pdb_df = pdb_df[
@@ -125,15 +142,17 @@ else:
         (pdb_df['Year'] >= from_year)
     ]
 
-    st.header('Structures Determined by Different Techniques', divider='gray')
+    st.markdown("<h1 style='font-size: 30px;'>Structures Determined by Different Techniques</h1>", unsafe_allow_html=True)
 
+    # Chart uses full names in the legend
     chart = (
         alt.Chart(filtered_pdb_df)
         .mark_line()
         .encode(
             x=alt.X("Year:O", title="Year"),
             y=alt.Y("Count:Q", title="Structures released per year"),
-            color=alt.Color("Technique:N", legend=alt.Legend(orient="bottom"))
+            color=alt.Color("Technique Full:N", legend=alt.Legend(title="Techniques", orient="bottom",
+                                                                  titleFontSize=12, labelFontSize=12, columns=2))
         )
     )
 
@@ -142,7 +161,7 @@ else:
     first_year = filtered_pdb_df[filtered_pdb_df['Year'] == from_year]
     last_year = filtered_pdb_df[filtered_pdb_df['Year'] == to_year]
 
-    st.header(f'Changes from {from_year} to {to_year}', divider='gray')
+    st.subheader(f'Structures determined in {to_year}, changes from {from_year}', divider='gray')
 
     cols = st.columns(3)
 
@@ -163,7 +182,14 @@ else:
 
             st.metric(
                 label=f'{technique} Structures',
-                value=f'{last_count:,}',
+                value=f'{last_count:,}',s
                 delta=growth,
                 delta_color=delta_color
             )
+
+st.markdown("""
+    <a href='https://github.com/connyyu' target='_blank'>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1024px-Octicons-mark-github.svg.png' 
+        style='position: fixed; bottom: 5%; left: 10%; transform: translateX(-50%); width: 30px; height: 30px;'/>
+    </a>
+""", unsafe_allow_html=True)

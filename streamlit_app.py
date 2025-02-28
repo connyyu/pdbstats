@@ -182,7 +182,7 @@ else:
 
             st.metric(
                 label=f'{technique} Structures',
-                value=f'{last_count:,}',s
+                value=f'{last_count:,}',
                 delta=growth,
                 delta_color=delta_color
             )

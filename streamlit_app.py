@@ -156,9 +156,10 @@ else:
             if first_count == 0:
                 growth = 'n/a'
                 delta_color = 'off'
+                delta_value = 0
             else:
-                growth = f'{last_count / first_count:,.2f}x'
-                delta_color = 'normal'
+                growth = f'{((last_count - first_count) / first_count)*100:,.2f} %'
+                delta_color = "normal"
 
             st.metric(
                 label=f'{technique} Structures',

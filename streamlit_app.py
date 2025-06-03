@@ -6,7 +6,7 @@ import urllib.parse
 
 st.set_page_config(
     page_title='PDB Statistics Dashboard',
-    page_icon=':microscope:',
+    page_icon=':bar_chart:',
 )
 
 EXPERIMENTAL_METHODS = [
@@ -109,7 +109,7 @@ pdb_df, min_value, max_value = get_pdb_data()
 # -----------------------------------------------------------------------------
 
 '''
-# :microscope: PDB Statistics Dashboard
+# :bar_chart: PDB Statistics Dashboard
 
 Number of macromolecular structures determined by various experimental techniques,
 based on information from the [RCSB PDB](https://www.rcsb.org/statistics/growth/experimental-method) database.
@@ -193,3 +193,5 @@ st.markdown("""
         style='position: fixed; bottom: 5%; left: 10%; transform: translateX(-50%); width: 30px; height: 30px;'/>
     </a>
 """, unsafe_allow_html=True)
+
+

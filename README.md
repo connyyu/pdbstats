@@ -1,4 +1,4 @@
-# 📊: PDB structure dashboard
+# 📊 PDB structure dashboard
 
 Number of macromolecular structures determined by various experimental techniques, based on information from the RCSB PDB database.
 
